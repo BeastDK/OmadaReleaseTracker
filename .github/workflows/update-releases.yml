@@ -2,7 +2,7 @@ name: Update Omada release calendar
 
 on:
   schedule:
-    # Kører hver morgen kl. 06:00 UTC. Justér efter behov.
+    # Runs every morning at 06:00 UTC. Adjust as needed.
     - cron: "0 6 * * *"
   workflow_dispatch: {}
 
@@ -21,26 +21,27 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Installer afhængigheder
+      - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Kør fetch_releases.py
+      - name: Run fetch_releases.py
         id: fetch
         env:
           CALENDAR_ICS_URL: ${{ vars.CALENDAR_ICS_URL }}
         run: python fetch_releases.py
 
-      - name: Commit og push ændringer
+      - name: Commit and push changes
         if: steps.fetch.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json changelog.json docs/index.html
-          git commit -m "Opdater release-kalender ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+          git commit -m "Update release calendar ($(date -u +'%Y-%m-%d %H:%M UTC'))"
           git push
 
-      # Hvis intet er ændret, men index.html alligevel skal genereres første gang
-      - name: Commit initial build (kun hvis ingen ændringer men filer mangler)
+      # In case nothing changed but the generated files still need an
+      # initial commit (e.g. first-ever run of the workflow)
+      - name: Commit initial build (only if no changes but files are missing)
         if: steps.fetch.outputs.changed == 'false'
         run: |
           git config user.name "github-actions[bot]"
@@ -50,10 +51,10 @@ jobs:
             git commit -m "Initial build"
             git push
           else
-            echo "Ingen ændringer at committe."
+            echo "Nothing to commit."
           fi
 
-      - name: Send mail ved ændringer
+      - name: Send email on changes
         if: steps.fetch.outputs.changed == 'true'
         uses: dawidd6/action-send-mail@v3
         with:
@@ -61,7 +62,7 @@ jobs:
           server_port: ${{ secrets.SMTP_PORT }}
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
-          subject: "Omada release-kalender opdateret"
+          subject: "Omada release calendar updated"
           to: ${{ secrets.MAIL_TO }}
           from: "Omada Release Tracker <${{ secrets.SMTP_USERNAME }}>"
           body: file://last_changes.txt
@@ -76,7 +77,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout repo (efter opdatering)
+      - name: Checkout repo (after update)
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
@@ -89,6 +90,6 @@ jobs:
         with:
           path: docs
 
-      - name: Deploy til GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
