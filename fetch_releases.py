@@ -199,7 +199,7 @@ def write_github_output(changed: bool):
 
 
 def main():
-    ics_url = os.environ.get("CALENDAR_ICS_URL", DEFAULT_ICS_URL)
+    ics_url = os.environ.get("CALENDAR_ICS_URL") or DEFAULT_ICS_URL
     lookback = int(os.environ.get("LOOKBACK_DAYS", "30"))
     lookahead = int(os.environ.get("LOOKAHEAD_DAYS", "365"))
 
