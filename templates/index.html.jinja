@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Omada Release Kalender</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --cloud: #38bdf8;
+    --private: #a78bfa;
+    --onprem: #34d399;
+    --other: #fbbf24;
+    --moved: #f97316;
+    --added: #34d399;
+    --removed: #f87171;
+    --renamed: #38bdf8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 2rem 1rem 4rem;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 1.7rem; margin-bottom: 0.2rem; }
+  .subtitle { color: var(--muted); margin-bottom: 2rem; font-size: 0.9rem; }
+  h2 { font-size: 1.2rem; margin: 2.2rem 0 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot.cloud { background: var(--cloud); }
+  .dot.private { background: var(--private); }
+  .dot.onprem { background: var(--onprem); }
+  .dot.other { background: var(--other); }
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; }
+  th, td { text-align: left; padding: 0.7rem 1rem; font-size: 0.92rem; }
+  th { color: var(--muted); font-weight: 500; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  tr + tr td { border-top: 1px solid rgba(255,255,255,0.06); }
+  .empty { color: var(--muted); padding: 1rem; font-size: 0.9rem; }
+  .changelog-item {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  .changelog-time { color: var(--muted); font-size: 0.78rem; margin-bottom: 0.4rem; }
+  .change-line { font-size: 0.88rem; margin: 0.2rem 0; padding-left: 0.6rem; border-left: 3px solid var(--muted); }
+  .change-line.moved { border-color: var(--moved); }
+  .change-line.added { border-color: var(--added); }
+  .change-line.removed { border-color: var(--removed); }
+  .change-line.renamed { border-color: var(--renamed); }
+  .footer { color: var(--muted); font-size: 0.78rem; margin-top: 3rem; text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Omada Release Kalender</h1>
+  <div class="subtitle">Genereret {{ generated_at }} · kilde: Omada offentlige Google-kalender</div>
+
+  <h2><span class="dot cloud"></span> Cloud</h2>
+  {% if grouped["Cloud"] %}
+  <table>
+    <tr><th>Dato</th><th>Titel</th></tr>
+    {% for ev in grouped["Cloud"] %}
+    <tr><td>{{ ev.date }}</td><td>{{ ev.title }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}<div class="empty">Ingen kommende releases fundet.</div>{% endif %}
+
+  <h2><span class="dot private"></span> Private Cloud</h2>
+  {% if grouped["Private Cloud"] %}
+  <table>
+    <tr><th>Dato</th><th>Titel</th></tr>
+    {% for ev in grouped["Private Cloud"] %}
+    <tr><td>{{ ev.date }}</td><td>{{ ev.title }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}<div class="empty">Ingen kommende releases fundet.</div>{% endif %}
+
+  <h2><span class="dot onprem"></span> On-Premises</h2>
+  {% if grouped["On-Premises"] %}
+  <table>
+    <tr><th>Dato</th><th>Titel</th></tr>
+    {% for ev in grouped["On-Premises"] %}
+    <tr><td>{{ ev.date }}</td><td>{{ ev.title }}</td></tr>
+    {% endfor %}
+  </table>
+  {% else %}<div class="empty">Ingen kommende releases fundet.</div>{% endif %}
+
+  {% if grouped["Andet"] %}
+  <h2><span class="dot other"></span> Andet</h2>
+  <table>
+    <tr><th>Dato</th><th>Titel</th></tr>
+    {% for ev in grouped["Andet"] %}
+    <tr><td>{{ ev.date }}</td><td>{{ ev.title }}</td></tr>
+    {% endfor %}
+  </table>
+  {% endif %}
+
+  <h2>Changelog</h2>
+  {% if changelog %}
+    {% for entry in changelog %}
+    <div class="changelog-item">
+      <div class="changelog-time">{{ entry.timestamp }}</div>
+      {% for c in entry.changes %}
+        {% if c.type == "moved" %}
+        <div class="change-line moved">🔀 [{{ c.category }}] "{{ c.title }}" flyttet: {{ c["from"] }} → {{ c.to }}</div>
+        {% elif c.type == "added" %}
+        <div class="change-line added">➕ [{{ c.category }}] Ny: "{{ c.title }}" ({{ c.date }})</div>
+        {% elif c.type == "removed" %}
+        <div class="change-line removed">➖ [{{ c.category }}] Fjernet: "{{ c.title }}" ({{ c.date }})</div>
+        {% elif c.type == "renamed" %}
+        <div class="change-line renamed">✏️ [{{ c.category }}] Omdøbt: "{{ c.from_title }}" → "{{ c.to_title }}" ({{ c.date }})</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="empty">Ingen ændringer registreret endnu.</div>
+  {% endif %}
+
+  <div class="footer">Opdateres automatisk via GitHub Actions.</div>
+</div>
+</body>
+</html>
