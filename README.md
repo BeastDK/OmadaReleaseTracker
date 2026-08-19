@@ -1,112 +1,112 @@
 # Omada Release Tracker
 
-Lille, selvkørende projekt der:
+A small, self-running project that:
 
-1. Henter Omadas offentlige release-kalender fra Google Calendar (.ics-feed).
-2. Kategoriserer hver event som **Cloud**, **Private Cloud** eller **On-Premises**
-   ud fra titlen.
-3. Bygger en statisk hjemmeside (`docs/index.html`) med releases grupperet
-   pr. kategori, hostet gratis via **GitHub Pages**.
-4. Fører en **changelog** (`changelog.json`), så det fremgår hvis en dato
-   flyttes (fx "August Cloud Release: 5. → 19.").
-5. Sender dig en **mail**, hvis der er sket ændringer siden sidste kørsel.
+1. Fetches Omada's public release calendar from Google Calendar (.ics feed).
+2. Categorizes each event as **Cloud**, **Private Cloud**, or **On-Premises**
+   based on its title.
+3. Builds a static website (`docs/index.html`) with releases grouped
+   by category, hosted for free via **GitHub Pages**.
+4. Keeps a **changelog** (`changelog.json`), so you can see if a date
+   has moved (e.g. "August Cloud Release: 5th → 19th").
+5. Sends you an **email** if anything has changed since the last run.
 
-Alt sammen kører automatisk hver dag via GitHub Actions — du behøver ikke
-gøre noget efter opsætningen.
+Everything runs automatically once a day via GitHub Actions — no manual
+steps needed after the initial setup.
 
-## 1. Opret repo
+## 1. Create the repo
 
-Opret et nyt (gerne public) GitHub-repo og læg alle filerne fra dette
-projekt ind i det (bevar mappestrukturen, særligt `.github/workflows/`).
+Create a new (public or private) GitHub repo and add all the files from
+this project (keep the folder structure, especially `.github/workflows/`).
 
-## 2. Find den korrekte kalender-URL
+## 2. Find the correct calendar URL
 
-Standard-URL'en i scriptet peger på:
+The default URL in the script points to:
 
 ```
 https://calendar.google.com/calendar/ical/kinga.kostrzewa%40omadaidentity.com/public/basic.ics
 ```
 
-Det er den offentlige iCal-udgave af den kalender, du linkede til. Vil du
-selv verificere/finde den:
+That's the public iCal version of the calendar you linked to. To verify
+or find it yourself:
 
-1. Åbn kalenderen i Google Calendar.
-2. Klik de tre prikker → **Indstillinger og deling**.
-3. Under **Integrer kalender** finder du **Offentlig adresse i iCal-format**
-   — det er den URL, scriptet skal bruge.
+1. Open the calendar in Google Calendar.
+2. Click the three dots → **Settings and sharing**.
+3. Under **Integrate calendar**, find **Public URL to this calendar**
+   in iCal format — that's the URL the script needs.
 
-Hvis linket ændrer sig, kan du overskrive det uden at røre koden (se
-punkt 4).
+If the link ever changes, you can override it without touching the code
+(see step 4).
 
-## 3. Aktivér GitHub Pages
+## 3. Enable GitHub Pages
 
-Repo → **Settings → Pages** → under "Build and deployment" vælg
-**Source: GitHub Actions**. Workflowet deployer automatisk indholdet af
-`docs/`.
+Repo → **Settings → Pages** → under "Build and deployment" choose
+**Source: GitHub Actions**. The workflow automatically deploys the
+contents of `docs/`.
 
-## 4. Sæt variabler og secrets op
+## 4. Set up variables and secrets
 
 Repo → **Settings → Secrets and variables → Actions**.
 
-**Variables** (kan være offentlige):
-| Navn | Værdi |
+**Variables** (can be public):
+| Name | Value |
 |---|---|
-| `CALENDAR_ICS_URL` | (valgfrit) overskriver standard-kalenderlinket |
+| `CALENDAR_ICS_URL` | (optional) overrides the default calendar link |
 
-**Secrets** (til mail-afsendelse, brug fx Gmail med en "app-adgangskode",
-eller enhver anden SMTP-udbyder):
-| Navn | Værdi |
+**Secrets** (for sending email, e.g. via Gmail with an "app password",
+or any other SMTP provider):
+| Name | Value |
 |---|---|
-| `SMTP_SERVER` | fx `smtp.gmail.com` |
-| `SMTP_PORT` | fx `465` |
-| `SMTP_USERNAME` | din afsender-mailadresse |
-| `SMTP_PASSWORD` | app-adgangskode / SMTP-password |
-| `MAIL_TO` | din modtager-mailadresse |
+| `SMTP_SERVER` | e.g. `smtp.gmail.com` |
+| `SMTP_PORT` | e.g. `465` |
+| `SMTP_USERNAME` | your sender email address |
+| `SMTP_PASSWORD` | app password / SMTP password |
+| `MAIL_TO` | your recipient email address |
 
-> Bruger du Gmail, skal du oprette en "App Password" (kræver 2-trins
-> bekræftelse aktiveret) — dit almindelige password virker ikke.
+> If you use Gmail, you'll need to create an "App Password" (requires
+> 2-step verification to be enabled) — your regular password won't work.
 
-## 5. Kør det
+## 5. Run it
 
-Workflowet kører automatisk hver dag kl. 06:00 UTC (kan justeres i
-`.github/workflows/update-releases.yml` under `cron:`), men du kan også
-trigge det manuelt:
+The workflow runs automatically every day at 06:00 UTC (adjustable in
+`.github/workflows/update-releases.yml` under `cron:`), but you can also
+trigger it manually:
 
 Repo → **Actions** → "Update Omada release calendar" → **Run workflow**.
 
-Efter første kørsel:
-- Siden ligger på `https://<dit-brugernavn>.github.io/<repo-navn>/`
-- `data.json` indeholder de seneste kendte events
-- `changelog.json` indeholder historikken over ændringer
-- Du får en mail, hvis noget ændrer sig
+After the first run:
+- The site is available at `https://<your-username>.github.io/<repo-name>/`
+- `data.json` contains the latest known events
+- `changelog.json` contains the history of changes
+- You'll get an email if anything changes
 
-## Lokalt test
+## Local testing
 
 ```bash
 pip install -r requirements.txt
 python fetch_releases.py
-open docs/index.html   # eller "start docs/index.html" på Windows
+open docs/index.html   # or "start docs/index.html" on Windows
 ```
 
-## Sådan virker kategoriseringen
+## How categorization works
 
-Scriptet kigger på event-titlen og matcher (i denne rækkefølge):
+The script looks at the event title and matches (in this order):
 
-1. "Private Cloud" → **Private Cloud**
+1. Both "private" and "cloud" appear (in any order) → **Private Cloud**
 2. "On-Prem" / "On-Premises" → **On-Premises**
 3. "Cloud" → **Cloud**
-4. Alt andet → **Andet**
+4. Anything else → **Other**
 
-Passer Omadas navngivning ikke præcis med dette, kan du justere
-`CATEGORY_PATTERNS` i `fetch_releases.py`.
+If Omada's naming doesn't match this exactly, adjust the regex patterns
+(`RE_PRIVATE`, `RE_CLOUD`, `RE_ONPREM`) in `fetch_releases.py`.
 
-## Filer
+## Files
 
 ```
-fetch_releases.py                  # hovedscript
-templates/index.html.jinja         # skabelon til hjemmesiden
-data.json                          # seneste kendte events (auto-genereret)
-changelog.json                     # historik over ændringer (auto-genereret)
-docs/index.html                    # den bygget hjemmeside (auto-genereret, Pages)
+fetch_releases.py                  # main script
+templates/index.html.jinja         # website template
+data.json                          # latest known events (auto-generated)
+changelog.json                     # change history (auto-generated)
+docs/index.html                    # the built website (auto-generated, Pages)
 .github/workflows/update-releases.yml
 ```

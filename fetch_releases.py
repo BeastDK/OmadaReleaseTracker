@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """
-Henter Omada's offentlige release-kalender (Google Calendar), kategoriserer
-events i Cloud / Private Cloud / On-Premises, gemmer resultatet i data.json,
-og opdaterer changelog.json hvis der er sket ændringer (nye/fjernede events
-eller flyttede datoer).
+Fetches Omada's public release calendar (Google Calendar), categorizes
+events into Cloud / Private Cloud / On-Premises, stores the result in
+data.json, and updates changelog.json whenever something changes
+(events added/removed, or dates moved).
 
-Bygger desuden docs/index.html (statisk side til GitHub Pages) ud fra
+Also builds docs/index.html (a static site for GitHub Pages) from
 templates/index.html.jinja.
 
-Miljøvariabler:
-  CALENDAR_ICS_URL  - URL til kalenderens .ics-feed (public/basic.ics)
-  LOOKBACK_DAYS     - hvor mange dage bagud der skal medtages (default 30)
-  LOOKAHEAD_DAYS    - hvor mange dage frem der skal medtages (default 365)
+Environment variables:
+  CALENDAR_ICS_URL  - URL to the calendar's .ics feed (public/basic.ics)
+  LOOKBACK_DAYS     - how many days back to include (default 30)
+  LOOKAHEAD_DAYS    - how many days ahead to include (default 365)
 
-Output (til brug i GitHub Actions):
-  Skriver "changed=true"/"changed=false" til $GITHUB_OUTPUT hvis den findes,
-  så workflowet kan afgøre om der skal sendes en mail.
+Output (used by GitHub Actions):
+  Writes "changed=true"/"changed=false" to $GITHUB_OUTPUT if it exists,
+  so the workflow can decide whether to send an email.
 """
 
 import json
@@ -41,16 +41,10 @@ DEFAULT_ICS_URL = (
     "kinga.kostrzewa%40omadaidentity.com/public/basic.ics"
 )
 
-# Rækkefølgen betyder noget: mest specifikke mønster først.
-CATEGORY_PATTERNS = [
-    ("Private Cloud", re.compile(r"private\s*cloud", re.I)),
-    ("On-Premises", re.compile(r"on[\s\-]?prem(ises)?", re.I)),
-    ("Cloud", re.compile(r"\bcloud\b", re.I)),
-]
-
 RE_PRIVATE = re.compile(r"\bprivate\b", re.I)
 RE_CLOUD = re.compile(r"\bcloud\b", re.I)
 RE_ONPREM = re.compile(r"on[\s\-]?prem(ises)?", re.I)
+
 
 def categorize(summary: str) -> str:
     text = summary or ""
@@ -58,19 +52,19 @@ def categorize(summary: str) -> str:
     has_cloud = bool(RE_CLOUD.search(text))
     has_onprem = bool(RE_ONPREM.search(text))
 
-    # "Private" og "Cloud" kan stå i vilkårlig rækkefølge, fx både
-    # "Private Cloud Release" og "Cloud Private August".
+    # "Private" and "Cloud" can appear in either order, e.g. both
+    # "Private Cloud Release" and "Cloud Private August".
     if has_private and has_cloud:
         return "Private Cloud"
     if has_onprem:
         return "On-Premises"
     if has_cloud:
         return "Cloud"
-    return "Andet"
+    return "Other"
 
 
 def to_iso_date(value) -> str:
-    """Konverterer et icalendar dato/datetime-felt til 'YYYY-MM-DD'."""
+    """Converts an icalendar date/datetime field to 'YYYY-MM-DD'."""
     if isinstance(value, datetime):
         return value.date().isoformat()
     if isinstance(value, date):
@@ -86,7 +80,7 @@ def fetch_events(ics_url: str, lookback_days: int, lookahead_days: int):
     start = datetime.now(timezone.utc) - timedelta(days=lookback_days)
     end = datetime.now(timezone.utc) + timedelta(days=lookahead_days)
 
-    # recurring_ical_events udfolder evt. tilbagevendende events i intervallet
+    # recurring_ical_events expands any recurring events within the range
     occurrences = recurring_ical_events.of(calendar).between(start, end)
 
     events = []
@@ -109,7 +103,7 @@ def fetch_events(ics_url: str, lookback_days: int, lookahead_days: int):
             }
         )
 
-    # Sorter og dedupliker (samme UID kan i sjældne tilfælde optræde 2x)
+    # Sort and deduplicate (the same UID can rarely appear twice)
     seen = {}
     for ev in sorted(events, key=lambda e: (e["date"], e["title"])):
         key = ev["uid"] or f"{ev['title']}|{ev['date']}"
@@ -130,7 +124,7 @@ def save_json(path: Path, obj):
 
 
 def diff_events(old_events, new_events):
-    """Finder tilføjede, fjernede og flyttede/omdøbte events."""
+    """Finds added, removed, moved and renamed events."""
 
     def key(ev):
         return ev["uid"] or f"{ev['title']}|{ev['date']}"
@@ -188,7 +182,7 @@ def diff_events(old_events, new_events):
 
 
 def render_site(events, changelog):
-    grouped = {"Cloud": [], "Private Cloud": [], "On-Premises": [], "Andet": []}
+    grouped = {"Cloud": [], "Private Cloud": [], "On-Premises": [], "Other": []}
     for ev in sorted(events, key=lambda e: e["date"]):
         grouped.setdefault(ev["category"], []).append(ev)
 
@@ -196,7 +190,7 @@ def render_site(events, changelog):
     template = env.get_template("index.html.jinja")
     html = template.render(
         grouped=grouped,
-        changelog=list(reversed(changelog)),  # nyeste øverst
+        changelog=list(reversed(changelog)),  # newest first
         generated_at=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
     )
 
@@ -216,9 +210,9 @@ def main():
     lookback = int(os.environ.get("LOOKBACK_DAYS", "30"))
     lookahead = int(os.environ.get("LOOKAHEAD_DAYS", "365"))
 
-    print(f"Henter kalender fra: {ics_url}")
+    print(f"Fetching calendar from: {ics_url}")
     new_events = fetch_events(ics_url, lookback, lookahead)
-    print(f"Fandt {len(new_events)} events i intervallet.")
+    print(f"Found {len(new_events)} events in range.")
 
     old_state = load_json(DATA_FILE, {"events": []})
     old_events = old_state.get("events", [])
@@ -234,29 +228,29 @@ def main():
             }
         )
         save_json(CHANGELOG_FILE, changelog)
-        print(f"Registrerede {len(changes)} ændring(er):")
+        print(f"Detected {len(changes)} change(s):")
         for c in changes:
             print(f"  - {c}")
     else:
-        print("Ingen ændringer fundet.")
+        print("No changes found.")
 
     save_json(DATA_FILE, {"events": new_events, "updated_at": datetime.now(timezone.utc).isoformat()})
     render_site(new_events, changelog)
     write_github_output(bool(changes))
 
-    # Skriv en simpel changes-summary til brug i mail-workflowet
+    # Write a simple changes summary for use in the email workflow
     summary_path = ROOT / "last_changes.txt"
     if changes:
         lines = []
         for c in changes:
             if c["type"] == "moved":
-                lines.append(f"[{c['category']}] '{c['title']}' flyttet: {c['from']} -> {c['to']}")
+                lines.append(f"[{c['category']}] '{c['title']}' moved: {c['from']} -> {c['to']}")
             elif c["type"] == "added":
-                lines.append(f"[{c['category']}] Ny event: '{c['title']}' ({c['date']})")
+                lines.append(f"[{c['category']}] New: '{c['title']}' ({c['date']})")
             elif c["type"] == "removed":
-                lines.append(f"[{c['category']}] Fjernet: '{c['title']}' ({c['date']})")
+                lines.append(f"[{c['category']}] Removed: '{c['title']}' ({c['date']})")
             elif c["type"] == "renamed":
-                lines.append(f"[{c['category']}] Omdøbt: '{c['from_title']}' -> '{c['to_title']}' ({c['date']})")
+                lines.append(f"[{c['category']}] Renamed: '{c['from_title']}' -> '{c['to_title']}' ({c['date']})")
         summary_path.write_text("\n".join(lines), encoding="utf-8")
     else:
         summary_path.write_text("", encoding="utf-8")
@@ -266,5 +260,5 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as exc:  # noqa: BLE001
-        print(f"FEJL: {exc}", file=sys.stderr)
+        print(f"ERROR: {exc}", file=sys.stderr)
         raise

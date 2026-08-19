@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Omada Release Kalender</title>
+<title>Omada Release Calendar</title>
 <style>
   :root {
     --bg: #0f172a;
@@ -58,44 +58,44 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>Omada Release Kalender</h1>
-  <div class="subtitle">Genereret {{ generated_at }} · kilde: Omada offentlige Google-kalender</div>
+  <h1>Omada Release Calendar</h1>
+  <div class="subtitle">Generated {{ generated_at }} · source: Omada public Google Calendar</div>
 
   <h2><span class="dot cloud"></span> Cloud</h2>
   {% if grouped["Cloud"] %}
   <table>
-    <tr><th>Dato</th><th>Titel</th></tr>
+    <tr><th>Date</th><th>Title</th></tr>
     {% for ev in grouped["Cloud"] %}
     <tr><td>{{ ev.date }}</td><td>{{ ev.title }}</td></tr>
     {% endfor %}
   </table>
-  {% else %}<div class="empty">Ingen kommende releases fundet.</div>{% endif %}
+  {% else %}<div class="empty">No upcoming releases found.</div>{% endif %}
 
   <h2><span class="dot private"></span> Private Cloud</h2>
   {% if grouped["Private Cloud"] %}
   <table>
-    <tr><th>Dato</th><th>Titel</th></tr>
+    <tr><th>Date</th><th>Title</th></tr>
     {% for ev in grouped["Private Cloud"] %}
     <tr><td>{{ ev.date }}</td><td>{{ ev.title }}</td></tr>
     {% endfor %}
   </table>
-  {% else %}<div class="empty">Ingen kommende releases fundet.</div>{% endif %}
+  {% else %}<div class="empty">No upcoming releases found.</div>{% endif %}
 
   <h2><span class="dot onprem"></span> On-Premises</h2>
   {% if grouped["On-Premises"] %}
   <table>
-    <tr><th>Dato</th><th>Titel</th></tr>
+    <tr><th>Date</th><th>Title</th></tr>
     {% for ev in grouped["On-Premises"] %}
     <tr><td>{{ ev.date }}</td><td>{{ ev.title }}</td></tr>
     {% endfor %}
   </table>
-  {% else %}<div class="empty">Ingen kommende releases fundet.</div>{% endif %}
+  {% else %}<div class="empty">No upcoming releases found.</div>{% endif %}
 
-  {% if grouped["Andet"] %}
-  <h2><span class="dot other"></span> Andet</h2>
+  {% if grouped["Other"] %}
+  <h2><span class="dot other"></span> Other</h2>
   <table>
-    <tr><th>Dato</th><th>Titel</th></tr>
-    {% for ev in grouped["Andet"] %}
+    <tr><th>Date</th><th>Title</th></tr>
+    {% for ev in grouped["Other"] %}
     <tr><td>{{ ev.date }}</td><td>{{ ev.title }}</td></tr>
     {% endfor %}
   </table>
@@ -108,22 +108,22 @@
       <div class="changelog-time">{{ entry.timestamp }}</div>
       {% for c in entry.changes %}
         {% if c.type == "moved" %}
-        <div class="change-line moved">🔀 [{{ c.category }}] "{{ c.title }}" flyttet: {{ c["from"] }} → {{ c.to }}</div>
+        <div class="change-line moved">🔀 [{{ c.category }}] "{{ c.title }}" moved: {{ c["from"] }} → {{ c.to }}</div>
         {% elif c.type == "added" %}
-        <div class="change-line added">➕ [{{ c.category }}] Ny: "{{ c.title }}" ({{ c.date }})</div>
+        <div class="change-line added">➕ [{{ c.category }}] New: "{{ c.title }}" ({{ c.date }})</div>
         {% elif c.type == "removed" %}
-        <div class="change-line removed">➖ [{{ c.category }}] Fjernet: "{{ c.title }}" ({{ c.date }})</div>
+        <div class="change-line removed">➖ [{{ c.category }}] Removed: "{{ c.title }}" ({{ c.date }})</div>
         {% elif c.type == "renamed" %}
-        <div class="change-line renamed">✏️ [{{ c.category }}] Omdøbt: "{{ c.from_title }}" → "{{ c.to_title }}" ({{ c.date }})</div>
+        <div class="change-line renamed">✏️ [{{ c.category }}] Renamed: "{{ c.from_title }}" → "{{ c.to_title }}" ({{ c.date }})</div>
         {% endif %}
       {% endfor %}
     </div>
     {% endfor %}
   {% else %}
-    <div class="empty">Ingen ændringer registreret endnu.</div>
+    <div class="empty">No changes recorded yet.</div>
   {% endif %}
 
-  <div class="footer">Opdateres automatisk via GitHub Actions.</div>
+  <div class="footer">Automatically updated via GitHub Actions.</div>
 </div>
 </body>
 </html>
