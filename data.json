@@ -10,7 +10,7 @@
     {
       "uid": "34a6vb72iulnh4dkbq26b87lp5@google.com",
       "title": "Cloud Private August",
-      "category": "Cloud",
+      "category": "Private Cloud",
       "date": "2026-09-02",
       "description": ""
     },
@@ -31,7 +31,7 @@
     {
       "uid": "5t8nc0g3q93hcun1aq3ubb3sor@google.com",
       "title": "Cloud Private September",
-      "category": "Cloud",
+      "category": "Private Cloud",
       "date": "2026-10-07",
       "description": ""
     },
@@ -45,10 +45,10 @@
     {
       "uid": "7pb07mf51mk817kobmu3fjj5fv@google.com",
       "title": "Cloud Private November",
-      "category": "Cloud",
+      "category": "Private Cloud",
       "date": "2026-11-18",
       "description": ""
     }
   ],
-  "updated_at": "2026-08-19T10:15:33.675740+00:00"
+  "updated_at": "2026-08-19T10:21:33.963215+00:00"
 }
