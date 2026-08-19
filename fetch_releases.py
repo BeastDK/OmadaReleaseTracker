@@ -48,6 +48,9 @@ CATEGORY_PATTERNS = [
     ("Cloud", re.compile(r"\bcloud\b", re.I)),
 ]
 
+RE_PRIVATE = re.compile(r"\bprivate\b", re.I)
+RE_CLOUD = re.compile(r"\bcloud\b", re.I)
+RE_ONPREM = re.compile(r"on[\s\-]?prem(ises)?", re.I)
 
 def categorize(summary: str) -> str:
     text = summary or ""
