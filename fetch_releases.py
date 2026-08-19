@@ -50,9 +50,19 @@ CATEGORY_PATTERNS = [
 
 
 def categorize(summary: str) -> str:
-    for label, pattern in CATEGORY_PATTERNS:
-        if pattern.search(summary or ""):
-            return label
+    text = summary or ""
+    has_private = bool(RE_PRIVATE.search(text))
+    has_cloud = bool(RE_CLOUD.search(text))
+    has_onprem = bool(RE_ONPREM.search(text))
+
+    # "Private" og "Cloud" kan stå i vilkårlig rækkefølge, fx både
+    # "Private Cloud Release" og "Cloud Private August".
+    if has_private and has_cloud:
+        return "Private Cloud"
+    if has_onprem:
+        return "On-Premises"
+    if has_cloud:
+        return "Cloud"
     return "Andet"
 
 
