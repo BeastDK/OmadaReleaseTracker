@@ -1,13 +1,6 @@
 {
   "events": [
     {
-      "uid": "28lligmoj1apihue4auvco9rfb@google.com",
-      "title": "August Cloud Update",
-      "category": "Cloud",
-      "date": "2026-08-19",
-      "description": ""
-    },
-    {
       "uid": "34a6vb72iulnh4dkbq26b87lp5@google.com",
       "title": "Cloud Private August",
       "category": "Private Cloud",
@@ -50,5 +43,5 @@
       "description": ""
     }
   ],
-  "updated_at": "2026-09-18T09:19:27.165332+00:00"
+  "updated_at": "2026-09-19T09:06:55.006353+00:00"
 }
