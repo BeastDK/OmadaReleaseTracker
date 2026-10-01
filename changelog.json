@@ -56,5 +56,16 @@
         "date": "2026-08-19"
       }
     ]
+  },
+  {
+    "timestamp": "2026-10-01T11:18:11+00:00",
+    "changes": [
+      {
+        "type": "added",
+        "category": "On-Premises",
+        "title": "15.0.7 on-premises release",
+        "date": "2026-10-14"
+      }
+    ]
   }
 ]

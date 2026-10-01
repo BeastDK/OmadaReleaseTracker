@@ -29,6 +29,13 @@
       "description": ""
     },
     {
+      "uid": "7khmrbir3ikgi1naatdcgivgnn@google.com",
+      "title": "15.0.7 on-premises release",
+      "category": "On-Premises",
+      "date": "2026-10-14",
+      "description": ""
+    },
+    {
       "uid": "1arlmosgkl2irf9uvffratts3p@google.com",
       "title": "November Cloud Update",
       "category": "Cloud",
@@ -43,5 +50,5 @@
       "description": ""
     }
   ],
-  "updated_at": "2026-09-30T10:50:45.691428+00:00"
+  "updated_at": "2026-10-01T11:18:11.667553+00:00"
 }
