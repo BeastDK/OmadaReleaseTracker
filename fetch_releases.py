@@ -41,6 +41,8 @@ DEFAULT_ICS_URL = (
     "omadareleasecalendar%40gmail.com/public/basic.ics"
 )
 
+SITE_URL = "https://beastdk.github.io/OmadaReleaseTracker/"
+
 RE_PRIVATE = re.compile(r"\bprivate\b", re.I)
 RE_CLOUD = re.compile(r"\bcloud\b", re.I)
 RE_ONPREM = re.compile(r"on[\s\-]?prem(ises)?", re.I)
@@ -251,6 +253,7 @@ def main():
                 lines.append(f"[{c['category']}] Removed: '{c['title']}' ({c['date']})")
             elif c["type"] == "renamed":
                 lines.append(f"[{c['category']}] Renamed: '{c['from_title']}' -> '{c['to_title']}' ({c['date']})")
+        lines += ["", f"See all releases and changes: {SITE_URL}"]
         summary_path.write_text("\n".join(lines), encoding="utf-8")
     else:
         summary_path.write_text("", encoding="utf-8")
