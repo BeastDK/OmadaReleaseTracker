@@ -1,54 +1,47 @@
 {
   "events": [
     {
-      "uid": "34a6vb72iulnh4dkbq26b87lp5@google.com",
-      "title": "Cloud Private August",
-      "category": "Private Cloud",
-      "date": "2026-09-02",
-      "description": ""
-    },
-    {
-      "uid": "1aeeq7ltff6k31n268sfvgga6h@google.com",
+      "uid": "6a70mrlvccnun4f3v1o293ojm5@google.com",
       "title": "September Cloud Update",
       "category": "Cloud",
       "date": "2026-09-23",
       "description": ""
     },
     {
-      "uid": "17rdqfh85p3urvc470rvpu9ms1@google.com",
+      "uid": "1h4mfsjnj00877p6k8eibg7mtb@google.com",
       "title": "16.0.1 on-premises release",
       "category": "On-Premises",
       "date": "2026-10-07",
       "description": ""
     },
     {
-      "uid": "5t8nc0g3q93hcun1aq3ubb3sor@google.com",
+      "uid": "522cg6vvhvrhhnjq6vrf4th0ti@google.com",
       "title": "Cloud Private September",
       "category": "Private Cloud",
       "date": "2026-10-07",
       "description": ""
     },
     {
-      "uid": "7khmrbir3ikgi1naatdcgivgnn@google.com",
+      "uid": "5vb0pf1iubjhe59i7n4lb26i93@google.com",
       "title": "15.0.7 on-premises release",
       "category": "On-Premises",
       "date": "2026-10-14",
       "description": ""
     },
     {
-      "uid": "1arlmosgkl2irf9uvffratts3p@google.com",
+      "uid": "387ujob6532gf4ef0sc0rnqf3m@google.com",
       "title": "November Cloud Update",
       "category": "Cloud",
       "date": "2026-11-04",
       "description": ""
     },
     {
-      "uid": "7pb07mf51mk817kobmu3fjj5fv@google.com",
+      "uid": "73lb22qqmqbmd260qj6pcs693o@google.com",
       "title": "Cloud Private November",
       "category": "Private Cloud",
       "date": "2026-11-18",
       "description": ""
     }
   ],
-  "updated_at": "2026-10-01T11:18:11.667553+00:00"
+  "updated_at": "2026-10-04T09:28:00.288967+00:00"
 }
