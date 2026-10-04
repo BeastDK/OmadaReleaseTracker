@@ -24,7 +24,7 @@ this project (keep the folder structure, especially `.github/workflows/`).
 The default URL in the script points to:
 
 ```
-https://calendar.google.com/calendar/ical/kinga.kostrzewa%40omadaidentity.com/public/basic.ics
+https://calendar.google.com/calendar/ical/omadareleasecalendar%40gmail.com/public/basic.ics
 ```
 
 That's the public iCal version of the calendar you linked to. To verify
@@ -75,7 +75,7 @@ trigger it manually:
 Repo → **Actions** → "Update Omada release calendar" → **Run workflow**.
 
 After the first run:
-- The site is available at `https://<your-username>.github.io/<repo-name>/`
+- The site is available at `https://beastdk.github.io/OmadaReleaseTracker/`
 - `data.json` contains the latest known events
 - `changelog.json` contains the history of changes
 - You'll get an email if anything changes

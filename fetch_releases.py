@@ -38,7 +38,7 @@ TEMPLATES_DIR = ROOT / "templates"
 
 DEFAULT_ICS_URL = (
     "https://calendar.google.com/calendar/ical/"
-    "kinga.kostrzewa%40omadaidentity.com/public/basic.ics"
+    "omadareleasecalendar%40gmail.com/public/basic.ics"
 )
 
 RE_PRIVATE = re.compile(r"\bprivate\b", re.I)
