@@ -8,13 +8,6 @@
       "description": ""
     },
     {
-      "uid": "1h4mfsjnj00877p6k8eibg7mtb@google.com",
-      "title": "16.0.1 on-premises release",
-      "category": "On-Premises",
-      "date": "2026-10-07",
-      "description": ""
-    },
-    {
       "uid": "522cg6vvhvrhhnjq6vrf4th0ti@google.com",
       "title": "Cloud Private September",
       "category": "Private Cloud",
@@ -24,6 +17,13 @@
     {
       "uid": "5vb0pf1iubjhe59i7n4lb26i93@google.com",
       "title": "15.0.7 on-premises release",
+      "category": "On-Premises",
+      "date": "2026-10-14",
+      "description": ""
+    },
+    {
+      "uid": "1h4mfsjnj00877p6k8eibg7mtb@google.com",
+      "title": "16.0.1 on-premises release",
       "category": "On-Premises",
       "date": "2026-10-14",
       "description": ""
@@ -43,5 +43,5 @@
       "description": ""
     }
   ],
-  "updated_at": "2026-10-07T11:27:33.552651+00:00"
+  "updated_at": "2026-10-08T11:43:04.013311+00:00"
 }
