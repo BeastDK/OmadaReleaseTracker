@@ -23,7 +23,7 @@
     },
     {
       "uid": "5vb0pf1iubjhe59i7n4lb26i93@google.com",
-      "title": "15.0.7 on-premises release",
+      "title": "v15 LTS patch 2 - on-premises release",
       "category": "On-Premises",
       "date": "2026-10-28",
       "description": ""
@@ -43,5 +43,5 @@
       "description": ""
     }
   ],
-  "updated_at": "2026-10-19T10:26:10.745472+00:00"
+  "updated_at": "2026-10-20T09:44:45.926472+00:00"
 }
