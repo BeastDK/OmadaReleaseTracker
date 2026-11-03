@@ -209,5 +209,118 @@
         "to": "2026-11-03"
       }
     ]
+  },
+  {
+    "timestamp": "2026-11-03T12:32:50+00:00",
+    "changes": [
+      {
+        "type": "added",
+        "category": "Cloud",
+        "title": "January Cloud Update",
+        "date": "2027-01-20"
+      },
+      {
+        "type": "added",
+        "category": "Private Cloud",
+        "title": "Cloud Private January",
+        "date": "2027-02-03"
+      },
+      {
+        "type": "added",
+        "category": "Cloud",
+        "title": "March Cloud Update",
+        "date": "2027-03-03"
+      },
+      {
+        "type": "added",
+        "category": "On-Premises",
+        "title": "16.0.2 on-premises release",
+        "date": "2027-03-10"
+      },
+      {
+        "type": "added",
+        "category": "On-Premises",
+        "title": "v15 LTS patch 3 - on-premises release",
+        "date": "2027-03-10"
+      },
+      {
+        "type": "added",
+        "category": "Private Cloud",
+        "title": "Cloud Private March",
+        "date": "2027-03-17"
+      },
+      {
+        "type": "added",
+        "category": "Cloud",
+        "title": "April Cloud Update",
+        "date": "2027-04-21"
+      },
+      {
+        "type": "added",
+        "category": "Private Cloud",
+        "title": "Cloud Private April",
+        "date": "2027-05-05"
+      },
+      {
+        "type": "added",
+        "category": "Cloud",
+        "title": "June Cloud Update",
+        "date": "2027-06-16"
+      },
+      {
+        "type": "added",
+        "category": "On-Premises",
+        "title": "16.0.3 on-premises release",
+        "date": "2027-06-23"
+      },
+      {
+        "type": "added",
+        "category": "On-Premises",
+        "title": "v15 LTS patch 4 - on-premises release",
+        "date": "2027-06-23"
+      },
+      {
+        "type": "added",
+        "category": "Private Cloud",
+        "title": "Cloud Private June",
+        "date": "2027-06-30"
+      },
+      {
+        "type": "added",
+        "category": "Cloud",
+        "title": "August Cloud Update",
+        "date": "2027-08-18"
+      },
+      {
+        "type": "added",
+        "category": "Private Cloud",
+        "title": "Cloud Private August",
+        "date": "2027-09-01"
+      },
+      {
+        "type": "added",
+        "category": "Cloud",
+        "title": "September Cloud Update",
+        "date": "2027-09-29"
+      },
+      {
+        "type": "added",
+        "category": "Private Cloud",
+        "title": "Cloud Private September",
+        "date": "2027-10-13"
+      },
+      {
+        "type": "added",
+        "category": "On-Premises",
+        "title": "16.0.4 on-premises release",
+        "date": "2027-10-27"
+      },
+      {
+        "type": "added",
+        "category": "On-Premises",
+        "title": "v15 LTS patch 5 - on-premises release",
+        "date": "2027-10-27"
+      }
+    ]
   }
 ]
