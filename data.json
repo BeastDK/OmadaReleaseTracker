@@ -25,14 +25,14 @@
       "uid": "387ujob6532gf4ef0sc0rnqf3m@google.com",
       "title": "November Cloud Update",
       "category": "Cloud",
-      "date": "2026-11-04",
+      "date": "2026-11-11",
       "description": ""
     },
     {
       "uid": "73lb22qqmqbmd260qj6pcs693o@google.com",
       "title": "Cloud Private November",
       "category": "Private Cloud",
-      "date": "2026-11-18",
+      "date": "2026-11-25",
       "description": ""
     },
     {
@@ -162,5 +162,5 @@
       "description": ""
     }
   ],
-  "updated_at": "2026-11-03T12:32:50.058600+00:00"
+  "updated_at": "2026-11-04T12:42:55.527989+00:00"
 }

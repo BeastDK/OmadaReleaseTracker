@@ -322,5 +322,24 @@
         "date": "2027-10-27"
       }
     ]
+  },
+  {
+    "timestamp": "2026-11-04T12:42:55+00:00",
+    "changes": [
+      {
+        "type": "moved",
+        "category": "Cloud",
+        "title": "November Cloud Update",
+        "from": "2026-11-04",
+        "to": "2026-11-11"
+      },
+      {
+        "type": "moved",
+        "category": "Private Cloud",
+        "title": "Cloud Private November",
+        "from": "2026-11-18",
+        "to": "2026-11-25"
+      }
+    ]
   }
 ]
