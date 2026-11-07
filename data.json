@@ -1,13 +1,6 @@
 {
   "events": [
     {
-      "uid": "522cg6vvhvrhhnjq6vrf4th0ti@google.com",
-      "title": "Cloud Private September",
-      "category": "Private Cloud",
-      "date": "2026-10-07",
-      "description": ""
-    },
-    {
       "uid": "1h4mfsjnj00877p6k8eibg7mtb@google.com",
       "title": "16.0.1 on-premises release",
       "category": "On-Premises",
@@ -162,5 +155,5 @@
       "description": ""
     }
   ],
-  "updated_at": "2026-11-06T12:38:43.934580+00:00"
+  "updated_at": "2026-11-07T11:26:02.630633+00:00"
 }
