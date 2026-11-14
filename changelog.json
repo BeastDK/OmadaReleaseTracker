@@ -363,5 +363,16 @@
         "date": "2027-11-10"
       }
     ]
+  },
+  {
+    "timestamp": "2026-11-14T11:53:16+00:00",
+    "changes": [
+      {
+        "type": "removed",
+        "category": "On-Premises",
+        "title": "16.0.1 on-premises release",
+        "date": "2026-10-14"
+      }
+    ]
   }
 ]
