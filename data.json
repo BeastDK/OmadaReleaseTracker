@@ -153,7 +153,14 @@
       "category": "Cloud",
       "date": "2027-11-10",
       "description": ""
+    },
+    {
+      "uid": "2t01id8g028mbro0bqe1gq0pqj@google.com",
+      "title": "Cloud Private November",
+      "category": "Private Cloud",
+      "date": "2027-11-24",
+      "description": ""
     }
   ],
-  "updated_at": "2026-11-23T15:35:36.410542+00:00"
+  "updated_at": "2026-11-24T15:27:33.566001+00:00"
 }
