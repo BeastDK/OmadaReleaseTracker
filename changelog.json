@@ -385,5 +385,107 @@
         "date": "2027-11-24"
       }
     ]
+  },
+  {
+    "timestamp": "2026-11-25T15:12:59+00:00",
+    "changes": [
+      {
+        "type": "moved",
+        "category": "Cloud",
+        "title": "January Cloud Update",
+        "from": "2027-01-20",
+        "to": "2027-01-27"
+      },
+      {
+        "type": "moved",
+        "category": "Private Cloud",
+        "title": "Cloud Private January",
+        "from": "2027-02-03",
+        "to": "2027-02-10"
+      },
+      {
+        "type": "moved",
+        "category": "Cloud",
+        "title": "March Cloud Update",
+        "from": "2027-03-03",
+        "to": "2027-03-10"
+      },
+      {
+        "type": "moved",
+        "category": "Private Cloud",
+        "title": "Cloud Private March",
+        "from": "2027-03-17",
+        "to": "2027-03-24"
+      },
+      {
+        "type": "moved",
+        "category": "Cloud",
+        "title": "April Cloud Update",
+        "from": "2027-04-21",
+        "to": "2027-04-28"
+      },
+      {
+        "type": "moved",
+        "category": "Private Cloud",
+        "title": "Cloud Private April",
+        "from": "2027-05-05",
+        "to": "2027-05-12"
+      },
+      {
+        "type": "moved",
+        "category": "Cloud",
+        "title": "June Cloud Update",
+        "from": "2027-06-16",
+        "to": "2027-06-23"
+      },
+      {
+        "type": "moved",
+        "category": "Private Cloud",
+        "title": "Cloud Private June",
+        "from": "2027-06-30",
+        "to": "2027-07-07"
+      },
+      {
+        "type": "moved",
+        "category": "Cloud",
+        "title": "August Cloud Update",
+        "from": "2027-08-18",
+        "to": "2027-08-25"
+      },
+      {
+        "type": "moved",
+        "category": "Private Cloud",
+        "title": "Cloud Private August",
+        "from": "2027-09-01",
+        "to": "2027-09-08"
+      },
+      {
+        "type": "moved",
+        "category": "Cloud",
+        "title": "September Cloud Update",
+        "from": "2027-09-29",
+        "to": "2027-10-06"
+      },
+      {
+        "type": "moved",
+        "category": "Private Cloud",
+        "title": "Cloud Private September",
+        "from": "2027-10-13",
+        "to": "2027-10-20"
+      },
+      {
+        "type": "moved",
+        "category": "Cloud",
+        "title": "November Cloud Update",
+        "from": "2027-11-10",
+        "to": "2027-11-17"
+      },
+      {
+        "type": "removed",
+        "category": "Private Cloud",
+        "title": "Cloud Private November",
+        "date": "2027-11-24"
+      }
+    ]
   }
 ]

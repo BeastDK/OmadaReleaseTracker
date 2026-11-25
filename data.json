@@ -25,27 +25,27 @@
       "uid": "16o5ubm10i3ploko3hlnl1inf1@google.com",
       "title": "January Cloud Update",
       "category": "Cloud",
-      "date": "2027-01-20",
+      "date": "2027-01-27",
       "description": ""
     },
     {
       "uid": "0d4mm1qvpvvsr8sfgv9937ml2e@google.com",
       "title": "Cloud Private January",
       "category": "Private Cloud",
-      "date": "2027-02-03",
-      "description": ""
-    },
-    {
-      "uid": "3tcrq39o1o2knaq45qsmc8to65@google.com",
-      "title": "March Cloud Update",
-      "category": "Cloud",
-      "date": "2027-03-03",
+      "date": "2027-02-10",
       "description": ""
     },
     {
       "uid": "76evsi19hts8uageh6e5jivuu5@google.com",
       "title": "16.0.2 on-premises release",
       "category": "On-Premises",
+      "date": "2027-03-10",
+      "description": ""
+    },
+    {
+      "uid": "3tcrq39o1o2knaq45qsmc8to65@google.com",
+      "title": "March Cloud Update",
+      "category": "Cloud",
       "date": "2027-03-10",
       "description": ""
     },
@@ -60,34 +60,34 @@
       "uid": "4rtbhj3anjj6hea40okehtmcb4@google.com",
       "title": "Cloud Private March",
       "category": "Private Cloud",
-      "date": "2027-03-17",
+      "date": "2027-03-24",
       "description": ""
     },
     {
       "uid": "1faqdm10jp7al2on0tuvlfok89@google.com",
       "title": "April Cloud Update",
       "category": "Cloud",
-      "date": "2027-04-21",
+      "date": "2027-04-28",
       "description": ""
     },
     {
       "uid": "1ljeu9pt1rf1vrqjmn4jardk96@google.com",
       "title": "Cloud Private April",
       "category": "Private Cloud",
-      "date": "2027-05-05",
-      "description": ""
-    },
-    {
-      "uid": "0snscm4ck29fuhclahkmubo98b@google.com",
-      "title": "June Cloud Update",
-      "category": "Cloud",
-      "date": "2027-06-16",
+      "date": "2027-05-12",
       "description": ""
     },
     {
       "uid": "3cu9s1l5an7qnnorkfabvab29o@google.com",
       "title": "16.0.3 on-premises release",
       "category": "On-Premises",
+      "date": "2027-06-23",
+      "description": ""
+    },
+    {
+      "uid": "0snscm4ck29fuhclahkmubo98b@google.com",
+      "title": "June Cloud Update",
+      "category": "Cloud",
       "date": "2027-06-23",
       "description": ""
     },
@@ -102,35 +102,35 @@
       "uid": "54ngppo1i342ogc35ursrdk6ip@google.com",
       "title": "Cloud Private June",
       "category": "Private Cloud",
-      "date": "2027-06-30",
+      "date": "2027-07-07",
       "description": ""
     },
     {
       "uid": "5tvopo3rhbf89j8m98vmmo7k8g@google.com",
       "title": "August Cloud Update",
       "category": "Cloud",
-      "date": "2027-08-18",
+      "date": "2027-08-25",
       "description": ""
     },
     {
       "uid": "78934b277p28qhko23isorbufj@google.com",
       "title": "Cloud Private August",
       "category": "Private Cloud",
-      "date": "2027-09-01",
+      "date": "2027-09-08",
       "description": ""
     },
     {
       "uid": "68ddabmago9pn8eb0muj1b2p4k@google.com",
       "title": "September Cloud Update",
       "category": "Cloud",
-      "date": "2027-09-29",
+      "date": "2027-10-06",
       "description": ""
     },
     {
       "uid": "51nj1tp2g7h4i7qotunc6k0ifg@google.com",
       "title": "Cloud Private September",
       "category": "Private Cloud",
-      "date": "2027-10-13",
+      "date": "2027-10-20",
       "description": ""
     },
     {
@@ -151,16 +151,9 @@
       "uid": "5093q0pd2lia6i6vvuv9b2c15l@google.com",
       "title": "November Cloud Update",
       "category": "Cloud",
-      "date": "2027-11-10",
-      "description": ""
-    },
-    {
-      "uid": "2t01id8g028mbro0bqe1gq0pqj@google.com",
-      "title": "Cloud Private November",
-      "category": "Private Cloud",
-      "date": "2027-11-24",
+      "date": "2027-11-17",
       "description": ""
     }
   ],
-  "updated_at": "2026-11-24T15:27:33.566001+00:00"
+  "updated_at": "2026-11-25T15:12:59.957883+00:00"
 }
